@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+
+  redmine:
+    image: redmine
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      REDMINE_DB_USERNAME: redmine
+      REDMINE_DB_POSTGRES: db
+      REDMINE_DB_PASSWORD: idontcare
+    stdin_open: true
+    tty: true
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: idontcare
+      POSTGRES_USER: redmine
+    stdin_open: true
+    tty: true
